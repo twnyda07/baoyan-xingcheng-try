@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>行程意願試填</title>
+<style>
+:root{--paper:#F7F3E9;--paper2:#EFE8D8;--card:#FFFDF8;--ink:#2B2620;--ink2:#4A4036;--line:#CFC4B0;--accent:#6B4F2A;--warn:#7A2E1C;--ok:#2F5233}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1E1B17;--paper2:#26221D;--card:#2A2621;--ink:#EDE6D8;--ink2:#C9BFAE;--line:#4A4238;--accent:#D9BE8C;--warn:#E3A08F;--ok:#9CC5A1}}
+:root[data-theme="dark"]{--paper:#1E1B17;--paper2:#26221D;--card:#2A2621;--ink:#EDE6D8;--ink2:#C9BFAE;--line:#4A4238;--accent:#D9BE8C;--warn:#E3A08F;--ok:#9CC5A1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;font-size:17px;line-height:1.65}
+main{max-width:760px;margin:0 auto;padding:16px 16px 80px}
+h1{font-size:23px;margin:8px 0 4px}
+h2{font-size:20px;margin:34px 0 10px;padding-top:14px;border-top:2px solid var(--line)}
+h3{font-size:18px;margin:18px 0 6px}
+.draft{display:inline-block;border:1px solid var(--warn);color:var(--warn);border-radius:6px;padding:0 8px;font-size:14px;margin-bottom:6px}
+.sub{color:var(--ink2);font-size:15px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
+.note{font-size:15px;color:var(--ink2)}
+.tag{display:inline-block;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin:2px 4px 2px 0;color:var(--ink2)}
+ol,ul{padding-left:22px;margin:6px 0}
+li{margin:4px 0}
+b.k{color:var(--accent)}
+/* 模擬問卷（手機框） */
+.phone{max-width:420px;margin:12px auto;border:1px solid var(--line);border-radius:18px;background:var(--paper2);padding:14px 12px}
+.phone h3{margin-top:4px}
+.who{font-size:16px;color:var(--ink2);margin:0 0 8px}
+.person{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:12px 0}
+.pname{font-size:19px;font-weight:700}
+.q{margin:10px 0 4px;font-weight:700}
+.opt{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:8px 10px;margin:6px 0;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:var(--paper)}
+.opt input{width:22px;height:22px;margin-top:3px;flex:0 0 auto;accent-color:var(--accent)}
+.opt.on{border-color:var(--accent);border-width:2px;padding:7px 9px}
+.opt small{display:block;color:var(--ink2);font-size:15px}
+.skip{border-left:4px solid var(--accent);padding:6px 10px;background:var(--paper);border-radius:6px;font-size:16px}
+.btn{display:inline-block;min-height:44px;font-size:17px;border-radius:10px;padding:0 18px;border:1px solid var(--accent);background:var(--card);color:var(--ink);cursor:pointer;margin:6px 6px 0 0}
+.btn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:700}
+.err{color:var(--warn);font-weight:700;margin:8px 0}
+.sum div{margin:6px 0}
+.chan{border-left:4px solid var(--accent)}
+.num{font-size:22px;font-weight:800;color:var(--accent)}
+.dec li{margin:8px 0}
+footer{margin-top:36px;font-size:14px;color:var(--ink2)}
+</style>
+</head>
+<body>
+<main>
+<span class="draft">工作人員試填版・不會送出、不會存檔</span>
+<h1>動土大典 12/26、12/27 行程意願（試填）</h1>
+<div class="sub">這是給工作人員先試的樣子，名字都是假的。正式版會寄給每一筆報名一個專屬連結，打開就是自己那一筆。<b>正式調查 11/15（日）截止。</b></div>
+<div class="phone" id="mock">
+ <h3>12/26、12/27 您想參加哪個行程？</h3>
+ <p class="who">這一筆報名共 <b>3 位</b>。請替每一位選一個。<br>不知道怎麼選，可以先選，之後再改（以最後一次為準）。</p>
+ <div id="form"><div id="people"></div>
+ <button class="btn" type="button" data-act="same">其他人都跟第一位一樣</button>
+ <div id="err" class="err" role="alert"></div>
+ <button class="btn pri" type="button" data-act="send">送出</button></div>
+ <div id="sum" class="card sum" style="display:none" aria-live="polite"></div>
+</div>
+
+
+<div class="card note">
+ <b>試填時請看這幾點</b>
+ <ul>
+  <li>題目看得懂嗎？長輩自己會不會填？</li>
+  <li>12/26 選「行程二（當天回家）」時，12/27 會自動不用選。</li>
+  <li>選「行程四（江賢二美術館）」時，會多問一題：不滿 15 人沒成行要改哪個。</li>
+  <li>「其他人都跟第一位一樣」按下去，全家一次填好，還可以個別改。</li>
+  <li>送出後可以按「修改」，以最後一次為準。</li>
+ </ul>
+ 有意見請直接告訴星慕法師。
+</div>
+<footer>試填版，按「送出」不會傳到任何地方。行程內容依寺方 11-05 提供的〈26日及27日的旅遊行程〉。</footer>
+</main>
+<script>
+(function(){
+ var P=[{n:"王○明",r:"本人"},{n:"李○華",r:"配偶"},{n:"王○安",r:"兒子"}];
+ var D26=[["1","行程一：留在會場參加法會到結束","約 18:30 結束，再搭車回飯店吃晚餐"],
+  ["2","行程二：下午 2 點離開，到台東火車站","當天回家，火車票與回程交通自己處理（12/27 就沒有行程）"],
+  ["3","行程三：下午 2 點出發去三仙台","之後回飯店，晚餐自己處理"],
+  ["4","行程四：下午 2 點出發去江賢二美術館","之後回飯店，晚餐自己處理。門票自費 250 元；滿 15 人才出發"]];
+ var D27=[["1","行程一：史前博物館","9:00～12:00。門票自費 100 元"],
+  ["2","行程二：小野柳＋利吉惡地","小野柳 9:00～10:30，利吉惡地 11:00～12:00"]];
+ var BK=[["1","改成行程一（留在會場到結束）"],["2","改成行程二（2 點離開，當天回家）"],["3","改成行程三（三仙台）"]];
+ var S=P.map(function(){return {a:"",b:"",c:""}});
+ function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+ function opts(i,f,list,cur){return list.map(function(o){var on=cur===o[0];
+  return "<label class='opt"+(on?" on":"")+"'><input type='radio' name='p"+i+f+"' value='"+o[0]+"' data-i='"+i+"' data-f='"+f+"'"+(on?" checked":"")+"><span>"+esc(o[1])+(o[2]?"<small>"+esc(o[2])+"</small>":"")+"</span></label>"}).join("")}
+ function draw(){var h="";P.forEach(function(p,i){var s=S[i];
+  h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>";
+  h+="<div class='q'>12/26（六）下午，想怎麼安排？</div>"+opts(i,"a",D26,s.a);
+  if(s.a==="4")h+="<div class='q'>如果江賢二美術館不滿 15 人、沒有成行，您要改成：</div>"+opts(i,"c",BK,s.c);
+  if(s.a==="2")h+="<div class='skip'>12/26 當天就回家，<b>12/27 沒有行程，不用選</b>。</div>";
+  else h+="<div class='q'>12/27（日）上午，8:30 在飯店集合，12:30 到台東火車站。想去哪裡？</div>"+opts(i,"b",D27,s.b);
+  h+="</div>"});
+  document.getElementById("people").innerHTML=h}
+ document.getElementById("mock").addEventListener("change",function(e){var t=e.target;if(!t||t.type!=="radio")return;
+  var i=+t.getAttribute("data-i"),f=t.getAttribute("data-f");S[i][f]=t.value;
+  if(f==="a"){if(t.value==="2")S[i].b="";if(t.value!=="4")S[i].c=""}
+  document.getElementById("err").textContent="";draw()});
+ function lab(list,v){for(var i=0;i<list.length;i++)if(list[i][0]===v)return list[i][1];return ""}
+ document.getElementById("mock").addEventListener("click",function(e){var b=e.target.closest?e.target.closest("[data-act]"):null;if(!b)return;
+  var act=b.getAttribute("data-act"),sum=document.getElementById("sum"),err=document.getElementById("err");
+  if(act==="same"){for(var i=1;i<S.length;i++)S[i]={a:S[0].a,b:S[0].b,c:S[0].c};draw();return}
+  if(act==="edit"){sum.style.display="none";document.getElementById("form").style.display="";return}
+  if(act==="send"){var miss=[];P.forEach(function(p,i){var s=S[i];
+    if(!s.a)miss.push(p.n+" 的 12/26");else if(s.a!=="2"&&!s.b)miss.push(p.n+" 的 12/27");if(s.a==="4"&&!s.c)miss.push(p.n+" 的備選");});
+   if(miss.length){err.textContent="還沒選："+miss.join("、");return}
+   var h="<b>已收到，謝謝！</b>（試填版，沒有真的送出）<div class='note'>以下是您選的。要改的話按「修改」，以最後一次送出為準。</div>";
+   P.forEach(function(p,i){var s=S[i];h+="<div><b>"+esc(p.n)+"</b>：12/26 "+esc(lab(D26,s.a))+(s.a==="4"?"（沒成行就"+esc(lab(BK,s.c))+"）":"")+
+    "；12/27 "+(s.a==="2"?"沒有行程（12/26 已回家）":esc(lab(D27,s.b)))+"</div>"});
+   h+="<button class='btn' type='button' data-act='edit'>修改</button>";
+   sum.innerHTML=h;sum.style.display="block";document.getElementById("form").style.display="none"}});
+ draw();
+})();
+</script>
+</body>
+</html>
