@@ -54,6 +54,7 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
  <h3>12/26、12/27 您想參加哪個行程？</h3>
  <p class="who">這一筆報名共 <b>3 位</b>。請替每一位選一個。<br>不知道怎麼選，可以先選，之後再改（以最後一次為準）。</p>
  <div id="form"><div id="people"></div>
+ <div class="person"><div class="q">備註／需求（可不填）</div><textarea id="note" maxlength="300" rows="4" style="width:100%;font-size:17px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--paper);color:var(--ink)" placeholder="例如：行動不便、飲食需求、想跟誰同一個行程或同一台車"></textarea><div class="note">最多 300 字</div></div>
  <button class="btn" type="button" data-act="same">其他人都跟第一位一樣</button>
  <div id="err" class="err" role="alert"></div>
  <button class="btn pri" type="button" data-act="send">送出</button></div>
@@ -69,8 +70,8 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
   <li>選「行程四（江賢二美術館）」時，會多問一題：不滿 15 人沒成行要改哪個。</li>
   <li>「其他人都跟第一位一樣」按下去，全家一次填好，還可以個別改。</li>
   <li>送出後可以按「修改」，以最後一次為準。</li>
+  <li>最下面有「備註／需求」欄，可以寫行動不便、飲食、想跟誰同行等需求。</li>
  </ul>
- 有意見請直接告訴星慕法師。
 </div>
 <footer>試填版，按「送出」不會傳到任何地方。行程內容依寺方 11-05 提供的〈26日及27日的旅遊行程〉。</footer>
 </main>
@@ -111,6 +112,7 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
    var h="<b>已收到，謝謝！</b>（試填版，沒有真的送出）<div class='note'>以下是您選的。要改的話按「修改」，以最後一次送出為準。</div>";
    P.forEach(function(p,i){var s=S[i];h+="<div><b>"+esc(p.n)+"</b>：12/26 "+esc(lab(D26,s.a))+(s.a==="4"?"（沒成行就"+esc(lab(BK,s.c))+"）":"")+
     "；12/27 "+(s.a==="2"?"沒有行程（12/26 已回家）":esc(lab(D27,s.b)))+"</div>"});
+   var nt=document.getElementById("note").value.trim();if(nt)h+="<div><b>備註／需求</b>："+esc(nt)+"</div>";
    h+="<button class='btn' type='button' data-act='edit'>修改</button>";
    sum.innerHTML=h;sum.style.display="block";document.getElementById("form").style.display="none"}});
  draw();
