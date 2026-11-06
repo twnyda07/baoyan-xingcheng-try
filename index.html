@@ -50,6 +50,14 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
 .btn.back{background:transparent;border-color:var(--ink2);font-weight:600}
 .row2{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.row2 .btn{flex:1 1 150px;margin:0;min-height:48px}
 .pl div{margin:6px 0}.dt{display:block;font-weight:700;color:var(--accent)}.lk{color:var(--accent);font-weight:700}
+.lineblk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}.linetxt{font-weight:700;margin-bottom:8px}
+.linerow{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.linebtn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border:1px solid var(--ink);border-radius:10px;background:var(--card);color:var(--ink);font-weight:700;font-size:17px;text-decoration:none}
+.lineic{display:inline-block;background:#06C755;color:#FFFFFF;border-radius:4px;font-size:11px;line-height:16px;padding:0 4px;font-weight:700}
+.lineqr{display:block;width:132px;height:132px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#FFFFFF}.lineqr svg{display:block;width:100%;height:100%}
+.linehow{font-size:15px;color:var(--ink2);margin-top:8px}
+@media (min-width:700px){.linerow{flex-direction:row;align-items:center;gap:16px}}
+.warnbox a,.lockbox a{color:#5C3A0E;text-decoration:underline}
 .mocknote{font-size:15px;color:var(--ink2);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin:8px 0}
 
 </style>
@@ -62,8 +70,9 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
 <div class="phone" id="mock">
  <h3>動土大典　12/26、12/27 行程</h3>
  <div class="note">請在 11/15（日）晚上 11:59 前選好。12/27 上午 8:30 在飯店集合，12:30 到台東火車站。</div>
- <div class="warnbox" role="note"><b>⚠ 請注意：行程送出後就不能再更改</b><p>禪院已經開始安排車輛、用餐與住宿。為了讓作業來得及，行程一經送出就是最後決定，送出前請再確認一次。</p><p>也請記住自己選的行程（日期與集合時間），當天請依這個行程行動。</p></div>
+ <div class="warnbox" role="note"><b>⚠ 請注意：行程送出後就不能再更改</b><p>禪院已經開始安排車輛、用餐與住宿。為了讓作業來得及，行程一經送出就是最後決定，送出前請再確認一次。</p><p>送出後，隨時可以在「<a href="https://script.google.com/macros/s/AKfycbyxgmpID1zRAxC5YiJyc_zaFWIww5lDov0ph07CT6HqBvTNAPiY1gLklPnX3BSjE8ag/exec" target="_blank" rel="noopener">個人查詢頁</a>」看到自己選的行程（日期與集合時間），請記住它，當天依這個行程行動。</p></div>
  <div id="view"></div>
+ <div class="lineblk"><div class="linetxt">有問題或需要更改行程，請在 LINE 的「參加12/26動土大典群組」提出。</div><div class="linerow"><a class="linebtn" href="https://line.me/ti/g/DfnVGhDqCL" target="_blank" rel="noopener"><span class="lineic" aria-hidden="true">LINE</span>加入 LINE 群組</a><a class="lineqr" href="https://line.me/ti/g/DfnVGhDqCL" target="_blank" rel="noopener" aria-label="加入 LINE 群組（QR 碼，點一下或長按開啟）"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33"><path fill="#fff" d="M0 0h33v33h-33z"/><path stroke="#2b2620" d="M2 2.5h7m2 0h1m3 0h4m1 0h2m2 0h7m-29 1h1m5 0h1m1 0h1m2 0h3m3 0h1m1 0h2m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h3m4 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h7m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m6 0h5m2 0h1m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m1 0h2m1 0h1m1 0h3m-20 1h1m1 0h4m1 0h4m1 0h1m3 0h1m3 0h2m1 0h2m1 0h1m-28 1h3m1 0h2m1 0h1m4 0h1m1 0h1m4 0h1m3 0h2m2 0h1m-27 1h1m1 0h8m5 0h2m3 0h6m-27 1h1m2 0h1m1 0h1m1 0h1m1 0h5m3 0h1m1 0h2m3 0h1m3 0h1m-29 1h1m3 0h1m1 0h1m2 0h2m3 0h1m3 0h5m2 0h1m1 0h1m-28 1h1m2 0h2m3 0h2m1 0h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m-29 1h4m2 0h1m3 0h3m3 0h1m1 0h2m2 0h2m1 0h1m2 0h1m-27 1h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m10 0h3m1 0h1m-29 1h2m4 0h1m2 0h5m1 0h1m1 0h1m1 0h2m2 0h3m-26 1h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m3 0h3m-27 1h3m1 0h4m3 0h2m1 0h3m2 0h2m7 0h1m-29 1h3m2 0h1m1 0h1m3 0h2m5 0h1m2 0h3m2 0h3m-29 1h2m1 0h1m1 0h2m1 0h1m2 0h3m1 0h3m1 0h8m-19 1h1m3 0h2m1 0h2m1 0h1m1 0h1m3 0h4m-28 1h7m8 0h2m1 0h3m1 0h1m1 0h1m1 0h1m-27 1h1m5 0h1m1 0h1m2 0h1m2 0h1m2 0h1m1 0h2m3 0h2m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h5m2 0h3m1 0h6m-25 1h1m1 0h3m1 0h1m1 0h1m1 0h2m5 0h2m4 0h1m2 0h2m-28 1h1m1 0h3m1 0h1m8 0h2m3 0h2m1 0h2m1 0h3m-29 1h1m5 0h1m1 0h3m2 0h2m4 0h3m2 0h1m1 0h1m1 0h1m-29 1h7m2 0h2m1 0h1m1 0h1m4 0h6"/></svg></a></div><div class="linehow">手機請直接點按鈕（或點 QR 圖）加入；用電腦看的話，再用手機掃 QR。</div></div>
 </div>
 
 <div class="card note">
@@ -78,6 +87,8 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
   <li><b>確定送出後就鎖定</b>：同一個連結再打開只看得到自己選的，不能再改；如需更改，請在 LINE 的「參加12/26動土大典群組」提出。工作人員在後台仍然可以代改（會記下是誰改的）。</li>
   <li>已經在報名表上選好行程的人，打開連結時那一位就是唯讀（只看得到、不能改）。</li>
   <li>每一頁都有「← 回上頁」（查詢頁 → 專屬連結頁、確認頁 → 選擇頁、唯讀頁）。</li>
+  <li>LINE 群組：手機上直接點「加入 LINE 群組」按鈕或點 QR 圖就能加入，不用掃碼；用電腦看的人再用手機掃 QR。</li>
+  <li>送出後，在「個人查詢頁」（分組查詢）輸入電話和姓名，就看得到自己和家人選的行程。</li>
   <li>最下面有「備註／需求」欄，可以寫行動不便、飲食、想跟誰同行等需求（要在送出前寫好）。</li>
  </ul>
 </div>
@@ -124,7 +135,7 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
  function drawLocked(first){var h=back("← 回上頁","toquery");
   if(first)h+="<p><b>已收到，謝謝！</b>（試填版，沒有真的送出）以下是您確定送出的行程。</p>";
   h+="<div class='lockbox'>您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：<a href='"+LINE+"' target='_blank' rel='noopener'>"+LINE+"</a></div>";
-  h+="<p><b>請記住自己選的行程（日期與集合時間），當天請依這個行程行動。</b>建議把這一頁截圖存起來。</p>";
+  h+="<p><b>送出後，隨時可以在「<a href=\"https://script.google.com/macros/s/AKfycbyxgmpID1zRAxC5YiJyc_zaFWIww5lDov0ph07CT6HqBvTNAPiY1gLklPnX3BSjE8ag/exec\" target=\"_blank\" rel=\"noopener\">個人查詢頁</a>」看到自己選的行程（日期與集合時間），請記住它，當天依這個行程行動。</b>建議也把這一頁截圖存起來。</p>";
   P.forEach(function(p,i){h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>"+plan(S[i])+"</div>"});
   if(NOTE.trim())h+="<div class='person'><b>備註／需求</b><div style='white-space:pre-wrap'>"+esc(NOTE)+"</div></div>";
   h+="<div class='mocknote'>正式版：同一個連結再打開，就是這一頁（唯讀）。試填版可以 <button class='btn' type='button' data-act='reopen'>模擬再打開連結</button> <button class='btn' type='button' data-act='reset'>重新試一次</button></div>";
