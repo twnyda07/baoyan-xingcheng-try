@@ -1,0 +1,138 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  background:#081D3F radial-gradient(1200px 600px at 50% -10%,#123258 0%,#081D3F 55%,#050F22 100%);
+  color:#EDE8DC;min-height:100vh;padding:34px 16px 60px}
+.wrap{max-width:760px;margin:0 auto}
+.brand{text-align:center;margin-bottom:30px}
+.brand .k{font-size:14px;letter-spacing:.5em;color:#F0CE8C;margin-bottom:12px}
+.brand h1{margin:0;font-size:27px;letter-spacing:.16em;color:#F0CE8C;font-weight:500}
+.brand .d{margin-top:10px;font-size:15px;color:#B6CDF0;letter-spacing:.1em}
+.card{background:rgba(255,255,255,.045);border:1px solid rgba(212,175,106,.28);
+  border-radius:18px;padding:24px 22px;backdrop-filter:blur(2px)}
+.card+.card{margin-top:20px}
+.card h2{margin:0 0 4px;font-size:15px;color:#F0CE8C;letter-spacing:.12em;font-weight:500}
+.card .hint{margin:0 0 18px;font-size:15px;color:#8FB4E8;line-height:1.75}
+label{display:block;font-size:15px;color:#F0CE8C;margin:12px 0 5px;letter-spacing:.08em}
+input{width:100%;padding:12px 13px;border-radius:11px;border:1px solid rgba(163,191,233,.32);
+  background:rgba(5,15,34,.6);color:#fff;font-size:16px}
+input:focus{outline:none;border-color:rgba(212,175,106,.8)}
+button{width:100%;margin-top:18px;padding:13px;border:0;border-radius:999px;background:#D4AF6A;
+  color:#0B2038;font-size:15px;font-weight:600;letter-spacing:.1em;cursor:pointer;transition:.25s}
+button:hover{background:#F0CE8C}
+.res{margin-top:20px;border-top:1px solid rgba(212,175,106,.3);padding-top:16px;display:none}
+.row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;
+  border-bottom:1px dashed rgba(163,191,233,.22);font-size:15px}
+.row b{color:#F0CE8C;font-weight:400;letter-spacing:.06em;white-space:nowrap}
+.row span{text-align:right;color:#fff}
+.err{margin-top:14px;color:#FFC9C9;font-size:14px;display:none;line-height:1.7}
+.wait{margin-top:14px;color:#F0CE8C;font-size:15px;display:none;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.secs{margin-top:12px;font-size:14px;color:#8FB4E8;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+button:disabled{background:#9C8659;color:#0B2038;cursor:default}
+.notice{margin-top:16px;font-size:14px;color:#8FB4E8;line-height:1.85}
+.tools{display:flex;gap:10px;margin-bottom:14px}
+.tools input{margin:0}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:9px 8px;text-align:left;border-bottom:1px solid rgba(163,191,233,.14)}
+th{color:#F0CE8C;font-weight:400;font-size:14px;letter-spacing:.1em;
+  position:sticky;top:0;background:#0A2244}
+td.n{color:#fff;font-variant-numeric:tabular-nums}
+td.s{color:#B6CDF0;font-size:14px}
+.ld{color:#F0CE8C}
+.scroll{max-height:62vh;overflow:auto;border-radius:12px;border:1px solid rgba(163,191,233,.16)}
+.empty{padding:26px 4px;text-align:center;color:#8FB4E8;font-size:15px;line-height:1.9}
+.foot{margin-top:26px;text-align:center;font-size:14px;color:#8FB4E8;letter-spacing:.06em;line-height:1.9}
+@media(max-width:520px){.brand h1{font-size:22px}.card{padding:20px 16px}th,td{padding:8px 5px;font-size:14px}}
+.itbtn{display:block;text-align:center;margin:8px 0;padding:12px 14px;min-height:48px;border-radius:10px;background:#F0CE8C;color:#081D3F;font-size:17px;font-weight:700;text-decoration:none}
+#itb a:not(.itbtn){color:#F0CE8C;text-decoration:underline;word-break:break-all}#itb input{margin-top:6px}
+.itplan{margin:10px 0;padding:12px 14px;border:1px solid rgba(240,206,140,.45);border-radius:12px;background:rgba(240,206,140,.08);font-size:16px;line-height:1.65}
+.itplanh{font-size:18px;font-weight:700;color:#F0CE8C;margin-bottom:6px}.itp{padding:8px 0;border-top:1px solid rgba(163,191,233,.18)}.itp b{font-size:17px}.itk{display:block;font-weight:700;color:#F0CE8C;margin-top:4px}
+</style>
+<div class="wrap">
+<div class="brand"><div class="k">寶 嚴 山 寶 嚴 禪 寺</div>
+<h1>動土大典　分組查詢</h1>
+<div class="d">2026.12.26（六）・台東都蘭</div></div>
+<div class="card">
+<h2>查詢我的分組</h2>
+<p class="hint">請輸入報名時填寫的電話（本人或同行家人的電話都可以；手機、市話皆可，有沒有 - 或空白都沒關係）。</p>
+<label>電話</label><input id="p" type="tel" inputmode="tel" autocomplete="off" placeholder="例如 0912-345-678" onkeydown="if(event.key==='Enter')go()">
+<button id="gobtn" onclick="go()">查詢</button>
+<div class="wait" id="wait"></div>
+<div class="res" id="card"></div><div class="err" id="err"></div>
+<div id="itb" style="margin-top:12px"></div>
+</div>
+<div class="card">
+<h2>關於分組名單</h2>
+<p class="hint">為保護個人資料，本頁不公開完整名單。請於上方輸入報名時填寫的電話，查詢您的分組資料（姓名只顯示部分字）；如有疑問，敬請洽所屬分院。</p>
+<div class="notice" id="nt"></div>
+</div>
+<div class="foot">住宿與車輛由大會統一安排　·　如有疑問請洽所屬分院</div>
+</div>
+<script>
+var __S={"authNotYet": {"ok": false, "closed": true, "notyet": 1, "mode": "phoneName", "msg": "行程意願 11/8（日）下午 2 點開放填寫，請到時候再打開這個連結。"}, "authNotFound": {"ok": false, "mode": "phoneName", "msg": "查不到，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL"}, "authPhoneOnly": {"ok": false, "mode": "phoneName", "needName": 1, "url": "lookup.html?p=itin", "msg": "請輸入報名時填的完整電話與姓名"}, "authR1": {"ok": true, "mode": "phoneName", "regs": [{"k": "R1", "s": "2a68190f8b96634628663b20", "n": 3, "lk": 0, "ppl": [{"nm": "王○明", "rel": "本人", "fix": 0, "has": 0, "t26": "還沒選", "t27": "還沒選", "tbk": ""}, {"nm": "李○華", "rel": "同行者", "fix": 0, "has": 0, "t26": "還沒選", "t27": "還沒選", "tbk": ""}, {"nm": "王○安", "rel": "同行者", "fix": 0, "has": 0, "t26": "還沒選", "t27": "還沒選", "tbk": ""}], "view": {"ok": true, "locked": 0, "lockMsg": "", "people": [{"q": 0, "nm": "王○明", "rel": "本人", "fix": 0, "lk": 0, "d26": "", "d27": "", "bk": "", "at": ""}, {"q": 1, "nm": "李○華", "rel": "同行者", "fix": 0, "lk": 0, "d26": "", "d27": "", "bk": "", "at": ""}, {"q": 2, "nm": "王○安", "rel": "同行者", "fix": 0, "lk": 0, "d26": "", "d27": "", "bk": "", "at": ""}], "volTxt": "您是志工／工作人員，大會排定的 12/26 行程是到大蒙山結束，不用選；12/27 依執事安排。", "note": "", "noteMax": 300, "noteHint": "行動不便、飲食、要跟誰同車同行程等需求，請寫在這裡", "d26nm": {"行程一": "法會全程（到 18:30）", "行程二": "14:00 離開至台東火車站（當天回家，回程交通自理）", "行程三": "14:00 三仙台後回飯店（晚餐自理）", "行程四": "14:00 江賢二美術館後回飯店（晚餐自理）"}, "d27nm": {"行程一": "史前博物館（8:30 集合，12:30 抵台東火車站）", "行程二": "小野柳＋利吉惡地（8:30 集合，12:30 抵台東火車站）"}, "deadline": "11/15（日）晚上 11:59"}, "url": "linkR1.html?mode=after&s=2a68190f8b96634628663b20", "nm": "王○明"}], "ended": 0}, "authR1after": {"ok": true, "mode": "phoneName", "regs": [{"k": "R1", "s": "2a68190f8b96634628663b20", "n": 3, "lk": 1, "ppl": [{"nm": "王○明", "rel": "本人", "fix": 0, "has": 1, "t26": "行程三：下午 2 點出發去三仙台。之後回飯店，晚餐自己處理", "t27": "行程一：史前博物館。8:30 在飯店集合，12:30 到台東火車站；9:00～12:00。門票自費 100 元", "tbk": ""}, {"nm": "李○華", "rel": "同行者", "fix": 0, "has": 1, "t26": "行程二：下午 2 點離開，到台東火車站。當天回家，火車票與回程交通自己處理（12/27 就沒有行程）", "t27": "沒有行程（12/26 當天已回家）", "tbk": ""}, {"nm": "王○安", "rel": "同行者", "fix": 0, "has": 1, "t26": "行程四：下午 2 點出發去江賢二美術館。之後回飯店，晚餐自己處理。門票自費 250 元；滿 15 人才出發", "t27": "行程二：小野柳＋利吉惡地。8:30 在飯店集合，12:30 到台東火車站；小野柳 9:00～10:30，利吉惡地 11:00～12:00", "tbk": "改成行程三（三仙台）"}], "view": {"ok": true, "locked": 1, "lockMsg": "您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL", "people": [{"q": 0, "nm": "王○明", "rel": "本人", "fix": 0, "lk": 1, "d26": "行程三", "d27": "行程一", "bk": "", "at": "2026/11/06 12:20:23"}, {"q": 1, "nm": "李○華", "rel": "同行者", "fix": 0, "lk": 1, "d26": "行程二", "d27": "", "bk": "", "at": "2026/11/06 12:20:23"}, {"q": 2, "nm": "王○安", "rel": "同行者", "fix": 0, "lk": 1, "d26": "行程四", "d27": "行程二", "bk": "行程三", "at": "2026/11/06 12:20:23"}], "volTxt": "您是志工／工作人員，大會排定的 12/26 行程是到大蒙山結束，不用選；12/27 依執事安排。", "note": "媽媽膝蓋不好，希望坐前排", "noteMax": 300, "noteHint": "行動不便、飲食、要跟誰同車同行程等需求，請寫在這裡", "d26nm": {"行程一": "法會全程（到 18:30）", "行程二": "14:00 離開至台東火車站（當天回家，回程交通自理）", "行程三": "14:00 三仙台後回飯店（晚餐自理）", "行程四": "14:00 江賢二美術館後回飯店（晚餐自理）"}, "d27nm": {"行程一": "史前博物館（8:30 集合，12:30 抵台東火車站）", "行程二": "小野柳＋利吉惡地（8:30 集合，12:30 抵台東火車站）"}, "msg": "您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL", "deadline": "11/15（日）晚上 11:59"}, "url": "linkR1.html?mode=after&s=2a68190f8b96634628663b20", "nm": "王○明"}], "ended": 0}, "linkNotYet": {"ok": false, "closed": true, "notyet": 1, "msg": "行程意願 11/8（日）下午 2 點開放填寫，請到時候再打開這個連結。"}, "linkEnded": {"ok": true, "locked": 0, "lockMsg": "", "people": [{"q": 0, "nm": "陳○同", "rel": "本人", "fix": 0, "lk": 0, "d26": "", "d27": "", "bk": "", "at": ""}], "volTxt": "您是志工／工作人員，大會排定的 12/26 行程是到大蒙山結束，不用選；12/27 依執事安排。", "note": "", "noteMax": 300, "noteHint": "行動不便、飲食、要跟誰同車同行程等需求，請寫在這裡", "d26nm": {"行程一": "法會全程（到 18:30）", "行程二": "14:00 離開至台東火車站（當天回家，回程交通自理）", "行程三": "14:00 三仙台後回飯店（晚餐自理）", "行程四": "14:00 江賢二美術館後回飯店（晚餐自理）"}, "d27nm": {"行程一": "史前博物館（8:30 集合，12:30 抵台東火車站）", "行程二": "小野柳＋利吉惡地（8:30 集合，12:30 抵台東火車站）"}, "ended": 1, "msg": "行程意願已經在 11/15（日）晚上 11:59 截止，不能再填。有問題請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL", "deadline": "11/15（日）晚上 11:59"}, "linkEndedR1": {"ok": true, "locked": 1, "lockMsg": "您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL", "people": [{"q": 0, "nm": "王○明", "rel": "本人", "fix": 0, "lk": 1, "d26": "行程三", "d27": "行程一", "bk": "", "at": "2026/11/06 12:20:23"}, {"q": 1, "nm": "李○華", "rel": "同行者", "fix": 0, "lk": 1, "d26": "行程一", "d27": "行程一", "bk": "", "at": "2026/11/06 12:20:23"}, {"q": 2, "nm": "王○安", "rel": "同行者", "fix": 0, "lk": 1, "d26": "行程四", "d27": "行程二", "bk": "行程三", "at": "2026/11/06 12:20:23"}], "volTxt": "您是志工／工作人員，大會排定的 12/26 行程是到大蒙山結束，不用選；12/27 依執事安排。", "note": "媽媽膝蓋不好，希望坐前排", "noteMax": 300, "noteHint": "行動不便、飲食、要跟誰同車同行程等需求，請寫在這裡", "d26nm": {"行程一": "法會全程（到 18:30）", "行程二": "14:00 離開至台東火車站（當天回家，回程交通自理）", "行程三": "14:00 三仙台後回飯店（晚餐自理）", "行程四": "14:00 江賢二美術館後回飯店（晚餐自理）"}, "d27nm": {"行程一": "史前博物館（8:30 集合，12:30 抵台東火車站）", "行程二": "小野柳＋利吉惡地（8:30 集合，12:30 抵台東火車站）"}, "ended": 1, "msg": "行程意願已經在 11/15（日）晚上 11:59 截止，不能再填。有問題請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL", "deadline": "11/15（日）晚上 11:59"}, "linkR13": {"ok": true, "locked": 0, "lockMsg": "", "people": [{"q": 0, "nm": "吳○工", "rel": "本人", "fix": 1, "lk": 0, "d26": "行程一", "d27": "", "bk": "", "at": ""}, {"q": 1, "nm": "吳○傑", "rel": "同行者", "fix": 0, "lk": 0, "d26": "", "d27": "", "bk": "", "at": ""}], "volTxt": "您是志工／工作人員，大會排定的 12/26 行程是到大蒙山結束，不用選；12/27 依執事安排。", "note": "", "noteMax": 300, "noteHint": "行動不便、飲食、要跟誰同車同行程等需求，請寫在這裡", "d26nm": {"行程一": "法會全程（到 18:30）", "行程二": "14:00 離開至台東火車站（當天回家，回程交通自理）", "行程三": "14:00 三仙台後回飯店（晚餐自理）", "行程四": "14:00 江賢二美術館後回飯店（晚餐自理）"}, "d27nm": {"行程一": "史前博物館（8:30 集合，12:30 抵台東火車站）", "行程二": "小野柳＋利吉惡地（8:30 集合，12:30 抵台東火車站）"}, "deadline": "11/15（日）晚上 11:59"}, "linkR14": {"ok": true, "locked": 0, "lockMsg": "", "people": [{"q": 0, "nm": "鄭○鼓", "rel": "本人", "fix": 0, "lk": 0, "d26": "", "d27": "", "bk": "", "at": ""}, {"q": 1, "nm": "鄭○鼓", "rel": "同行者", "fix": 0, "lk": 0, "d26": "", "d27": "", "bk": "", "at": ""}], "volTxt": "您是志工／工作人員，大會排定的 12/26 行程是到大蒙山結束，不用選；12/27 依執事安排。", "note": "", "noteMax": 300, "noteHint": "行動不便、飲食、要跟誰同車同行程等需求，請寫在這裡", "d26nm": {"行程一": "法會全程（到 18:30）", "行程二": "14:00 離開至台東火車站（當天回家，回程交通自理）", "行程三": "14:00 三仙台後回飯店（晚餐自理）", "行程四": "14:00 江賢二美術館後回飯店（晚餐自理）"}, "d27nm": {"行程一": "史前博物館（8:30 集合，12:30 抵台東火車站）", "行程二": "小野柳＋利吉惡地（8:30 集合，12:30 抵台東火車站）"}, "deadline": "11/15（日）晚上 11:59"}, "linkR1after": {"ok": true, "locked": 1, "lockMsg": "您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL", "people": [{"q": 0, "nm": "王○明", "rel": "本人", "fix": 0, "lk": 1, "d26": "行程三", "d27": "行程一", "bk": "", "at": "2026/11/06 12:20:23"}, {"q": 1, "nm": "李○華", "rel": "同行者", "fix": 0, "lk": 1, "d26": "行程二", "d27": "", "bk": "", "at": "2026/11/06 12:20:23"}, {"q": 2, "nm": "王○安", "rel": "同行者", "fix": 0, "lk": 1, "d26": "行程四", "d27": "行程二", "bk": "行程三", "at": "2026/11/06 12:20:23"}], "volTxt": "您是志工／工作人員，大會排定的 12/26 行程是到大蒙山結束，不用選；12/27 依執事安排。", "note": "媽媽膝蓋不好，希望坐前排", "noteMax": 300, "noteHint": "行動不便、飲食、要跟誰同車同行程等需求，請寫在這裡", "d26nm": {"行程一": "法會全程（到 18:30）", "行程二": "14:00 離開至台東火車站（當天回家，回程交通自理）", "行程三": "14:00 三仙台後回飯店（晚餐自理）", "行程四": "14:00 江賢二美術館後回飯店（晚餐自理）"}, "d27nm": {"行程一": "史前博物館（8:30 集合，12:30 抵台東火車站）", "行程二": "小野柳＋利吉惡地（8:30 集合，12:30 抵台東火車站）"}, "msg": "您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL", "deadline": "11/15（日）晚上 11:59"}, "saveR1": {"ok": true, "locked": 1, "lockMsg": "您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL", "people": [{"q": 0, "nm": "王○明", "rel": "本人", "fix": 0, "lk": 1, "d26": "行程三", "d27": "行程一", "bk": "", "at": "2026/11/06 12:20:23"}, {"q": 1, "nm": "李○華", "rel": "同行者", "fix": 0, "lk": 1, "d26": "行程二", "d27": "", "bk": "", "at": "2026/11/06 12:20:23"}, {"q": 2, "nm": "王○安", "rel": "同行者", "fix": 0, "lk": 1, "d26": "行程四", "d27": "行程二", "bk": "行程三", "at": "2026/11/06 12:20:23"}], "volTxt": "您是志工／工作人員，大會排定的 12/26 行程是到大蒙山結束，不用選；12/27 依執事安排。", "note": "媽媽膝蓋不好，希望坐前排", "noteMax": 300, "noteHint": "行動不便、飲食、要跟誰同車同行程等需求，請寫在這裡", "d26nm": {"行程一": "法會全程（到 18:30）", "行程二": "14:00 離開至台東火車站（當天回家，回程交通自理）", "行程三": "14:00 三仙台後回飯店（晚餐自理）", "行程四": "14:00 江賢二美術館後回飯店（晚餐自理）"}, "d27nm": {"行程一": "史前博物館（8:30 集合，12:30 抵台東火車站）", "行程二": "小野柳＋利吉惡地（8:30 集合，12:30 抵台東火車站）"}, "saved": 3, "skipped": [], "noteCut": 0, "_t": {"w": 0, "r": 0, "h": 1}}, "lookupR1": {"ok": true, "n": 1, "cards": [{"ok": true, "name": "王○明", "branch": "台北善首講堂", "mates": "李○華（配偶）、王○安（子）", "group": "", "leader": "", "bus": "", "room": "", "showGroup": false, "showRoomBus": false, "notice": "住宿由大會統一安排，恕無法指定；如遇不可預期之情況，大會保留調整或取消之權利，並將另行通知。", "hiddenNote": "小組與組長、車次與房號尚未公布，確定後另行通知。", "qr": "", "html": "<div style=\"display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(163,191,233,.22);font-size:15px\"><b style=\"color:#F0CE8C;font-weight:400;letter-spacing:.06em;white-space:nowrap\">姓名<\/b><span style=\"text-align:right;color:#fff\">王○明<\/span><\/div><div style=\"display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(163,191,233,.22);font-size:15px\"><b style=\"color:#F0CE8C;font-weight:400;letter-spacing:.06em;white-space:nowrap\">分院<\/b><span style=\"text-align:right;color:#fff\">台北善首講堂<\/span><\/div><div style=\"display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(163,191,233,.22);font-size:15px\"><b style=\"color:#F0CE8C;font-weight:400;letter-spacing:.06em;white-space:nowrap\">同行者<\/b><span style=\"text-align:right;color:#fff\">李○華（配偶）、王○安（子）<\/span><\/div><div style=\"margin-top:16px;font-size:12px;color:#8FB4E8;line-height:1.85\">住宿由大會統一安排，恕無法指定；如遇不可預期之情況，大會保留調整或取消之權利，並將另行通知。<br>小組與組長、車次與房號尚未公布，確定後另行通知。<\/div>", "key": "R1"}], "html": "<div style=\"display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(163,191,233,.22);font-size:15px\"><b style=\"color:#F0CE8C;font-weight:400;letter-spacing:.06em;white-space:nowrap\">姓名<\/b><span style=\"text-align:right;color:#fff\">王○明<\/span><\/div><div style=\"display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(163,191,233,.22);font-size:15px\"><b style=\"color:#F0CE8C;font-weight:400;letter-spacing:.06em;white-space:nowrap\">分院<\/b><span style=\"text-align:right;color:#fff\">台北善首講堂<\/span><\/div><div style=\"display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed rgba(163,191,233,.22);font-size:15px\"><b style=\"color:#F0CE8C;font-weight:400;letter-spacing:.06em;white-space:nowrap\">同行者<\/b><span style=\"text-align:right;color:#fff\">李○華（配偶）、王○安（子）<\/span><\/div><div style=\"margin-top:16px;font-size:12px;color:#8FB4E8;line-height:1.85\">住宿由大會統一安排，恕無法指定；如遇不可預期之情況，大會保留調整或取消之權利，並將另行通知。<br>小組與組長、車次與房號尚未公布，確定後另行通知。<\/div>"}};
+function __q(k,d){var m=location.search.match(new RegExp(k+'=([^&]*)'));return m?decodeURIComponent(m[1]):d}
+var __BUSY=Number(__q('busy','0')),__DELAY=Number(__q('delay','300')),__MODE=__q('mode','open');
+window.google={script:{get run(){var ok=null,bad=null,o={};o.withSuccessHandler=function(f){ok=f;return o};o.withFailureHandler=function(f){bad=f;return o};
+ var later=function(v,ms){setTimeout(function(){ok(JSON.parse(JSON.stringify(v)))},ms==null?__DELAY:ms)};
+ o.publicItinAuth=function(a){ if(__MODE==='notyet'){later(__S.authNotYet);return} if(a&&a.phone&&String(a.phone).replace(/[^0-9]/g,'')==='0900999999'){later(__S.authNotFound);return}
+   if(a&&a.name==null){later(__S.authPhoneOnly);return} later(__MODE==='after'?__S.authR1after:__S.authR1)};
+ o.publicItinLink=function(k){ if(__MODE==='notyet'){later(__S.linkNotYet);return} if(__MODE==='ended'){later(k==='R1'?__S.linkEndedR1:__S.linkEnded);return}
+   if(k==='R13'){later(__S.linkR13);return} if(k==='R14'){later(__S.linkR14);return} later(__MODE==='after'?__S.linkR1after:__S.authR1.regs[0].view)};
+ o.publicItinLinkSave=function(x){ if(__BUSY>0){__BUSY--; if(__BUSY%2){setTimeout(function(){bad(new Error('Service invoked too many times'))},__DELAY)}else later({ok:false,busy:true,msg:'現在很多人同時送出，正在排隊，請稍候'});return} later(__S.saveR1,1200)};
+ o.publicLookupPhone=function(p){later(__S.lookupR1)};
+ o.publicList=function(){later({notice:'住宿由大會統一安排。',hiddenNote:'',updated:'2026-11-09 20:30',showRoomBus:false,showGroup:false})};
+ return o}}};
+</script><script>
+var ALL=[],SHOW=false,SHOWG=false,HIDDEN="";
+var T0=0,TMR=null;
+function tick(){if(!T0)return;var s=((Date.now()-T0)/1000).toFixed(1);
+document.getElementById("wait").textContent="查詢中…已等候 "+s+" 秒";}
+function tStart(){T0=Date.now();document.getElementById("wait").style.display="block";
+document.getElementById("gobtn").disabled=true;tick();TMR=setInterval(tick,100);}
+function tStop(){if(TMR){clearInterval(TMR);TMR=null}
+var s=T0?((Date.now()-T0)/1000).toFixed(1):"0.0";T0=0;
+document.getElementById("wait").style.display="none";
+document.getElementById("gobtn").disabled=false;return s;}
+function go(){document.getElementById("err").style.display="none";document.getElementById("card").style.display="none";
+tStart();
+google.script.run.withSuccessHandler(function(r){
+var secs=tStop();
+if(!r.ok){var e=document.getElementById("err");e.textContent=r.msg;e.style.display="block";return}
+document.getElementById("card").innerHTML=String(r.html||"")+"<div class='secs'>查詢耗時 "+secs+" 秒</div>";
+document.getElementById("card").style.display="block";itinBtns(document.getElementById("p").value)
+}).withFailureHandler(function(err){
+var secs=tStop();
+var e=document.getElementById("err");
+e.textContent="查詢沒有完成（已等候 "+secs+" 秒）："+(err&&err.message?err.message:err)+"　請再按一次查詢；若一直這樣，請洽所屬分院。";
+e.style.display="block";
+}).publicLookupPhone(document.getElementById("p").value)}
+function itinBtns(ph){var B=document.getElementById("itb");if(!B)return;B.innerHTML="";B.removeAttribute("data-asked");
+if(!google.script.run.publicItinAuth)return;
+google.script.run.withSuccessHandler(function(x){if(!x)return;var L=[];
+if(x.ok&&x.regs){x.regs.forEach(function(g){if(g.url)L.push([g.url,itinLab(x,g)])})}
+else if(x.mode==="name4"&&x.url)L.push([x.url,"填 12/26、12/27 行程意願（輸入姓名＋電話後四碼）"]);
+else if(x.needName&&!B.getAttribute("data-asked")){itinAskName(B,ph);return}
+L.forEach(function(a){var e=document.createElement("a");e.className="itbtn";e.href=a[0];e.target="_top";e.rel="noopener";e.textContent=a[1];B.appendChild(e)});if(x.ok&&x.regs)itinPlans(B,x);if(L.length)itinWarn(B)
+}).withFailureHandler(function(){}).publicItinAuth({phone:ph})}
+var ITIN_LU="https://line.me/ti/g/DfnVGhDqCL",ITIN_NF="查不到，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：https://line.me/ti/g/DfnVGhDqCL";
+function itinLab(x,g){return (x.ended?"看我選的行程（已截止）":(g.lk?"看我選的行程（已送出，不能更改）":"填 12/26、12/27 行程意願"))+(x.regs.length>1?"："+g.nm+" 這一筆":"")}
+function itinPlans(B,x){(x.regs||[]).forEach(function(g){var P=(g.ppl||[]).filter(function(p){return p.has||p.fix});if(!P.length)return;
+var d=document.createElement("div");d.className="itplan";var h=document.createElement("div");h.className="itplanh";h.textContent="我選的行程"+(x.regs.length>1?"（"+g.nm+" 這一筆）":"")+(g.lk?"・已送出，不能更改":"");d.appendChild(h);
+(g.ppl||[]).forEach(function(p){var c=document.createElement("div");c.className="itp";var n=document.createElement("b");n.textContent=p.nm+"　"+p.rel;c.appendChild(n);
+var L=p.fix?[["12/26（六）","志工／工作人員：大會排定到大蒙山結束"]]:[["12/26（六）下午",p.t26]].concat(p.tbk?[["美術館沒成行時",p.tbk]]:[]).concat([["12/27（日）上午",p.t27]]);
+L.forEach(function(r){var l=document.createElement("div");var k=document.createElement("span");k.className="itk";k.textContent=r[0];l.appendChild(k);l.appendChild(document.createTextNode(r[1]));c.appendChild(l)});d.appendChild(c)});
+B.appendChild(d)})}
+function itinWarn(B){if(B.querySelector(".itwarn"))return;var p=document.createElement("p");p.className="hint itwarn";p.textContent="請注意：行程送出後就不能再更改，送出前請再確認一次。送出後，回到這一頁查詢就看得到自己選的行程（日期與集合時間），請記住它，當天依這個行程行動。";B.appendChild(p)}
+function itinMsg(el,t){t=String(t||"");el.innerHTML="";var i=ITIN_LU?t.indexOf(ITIN_LU):-1;if(i<0){el.textContent=t;return}
+el.appendChild(document.createTextNode(t.slice(0,i)));var a=document.createElement("a");a.href=ITIN_LU;a.target="_blank";a.rel="noopener";a.textContent=ITIN_LU;el.appendChild(a);el.appendChild(document.createTextNode(t.slice(i+ITIN_LU.length)));var g=document.createElement("a");g.className="itbtn";g.href=ITIN_LU;g.target="_blank";g.rel="noopener";g.textContent="加入 LINE 群組（手機直接點這裡）";el.appendChild(g)}
+function itinAskName(B,ph){B.setAttribute("data-asked","1");var t=document.createElement("p");t.className="hint";t.textContent="要填寫或查看 12/26、12/27 行程：請再輸入報名時填的姓名（本人或同行者都可以）";
+var n=document.createElement("input");n.type="text";n.autocomplete="off";n.placeholder="姓名";var b=document.createElement("button");b.type="button";b.textContent="查看／填寫我的行程";
+var m=document.createElement("div");m.className="err";B.appendChild(t);B.appendChild(n);B.appendChild(b);B.appendChild(m);
+b.onclick=function(){m.style.display="none";b.disabled=true;google.script.run.withSuccessHandler(function(x){b.disabled=false;
+if(!x||!x.ok||!x.regs){itinMsg(m,(x&&x.msg)||ITIN_NF);m.style.display="block";return}
+try{B.removeChild(t);B.removeChild(n);B.removeChild(b)}catch(eR){}
+x.regs.forEach(function(g){if(!g.url)return;var e=document.createElement("a");e.className="itbtn";e.href=g.url;e.target="_top";e.rel="noopener";e.textContent=itinLab(x,g);B.appendChild(e)});itinPlans(B,x);itinWarn(B)
+}).withFailureHandler(function(){b.disabled=false;m.textContent="連線失敗，請再按一次";m.style.display="block"}).publicItinAuth({phone:ph,name:n.value})}}
+google.script.run.withSuccessHandler(function(d){SHOW=!!d.showRoomBus;SHOWG=!!d.showGroup;HIDDEN=d.hiddenNote||"";
+document.getElementById("nt").innerHTML=d.notice+(HIDDEN?"<br>"+HIDDEN:"")+(d.updated?"<br>名單更新時間："+d.updated:"")}).publicList();
+</script>

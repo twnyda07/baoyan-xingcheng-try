@@ -1,166 +1,19 @@
-<!doctype html>
-<html lang="zh-Hant">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>行程意願試填</title>
-<style>
-:root{--paper:#F7F3E9;--paper2:#EFE8D8;--card:#FFFDF8;--ink:#2B2620;--ink2:#4A4036;--line:#CFC4B0;--accent:#6B4F2A;--warn:#7A2E1C;--ok:#2F5233}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1E1B17;--paper2:#26221D;--card:#2A2621;--ink:#EDE6D8;--ink2:#C9BFAE;--line:#4A4238;--accent:#D9BE8C;--warn:#E3A08F;--ok:#9CC5A1}}
-:root[data-theme="dark"]{--paper:#1E1B17;--paper2:#26221D;--card:#2A2621;--ink:#EDE6D8;--ink2:#C9BFAE;--line:#4A4238;--accent:#D9BE8C;--warn:#E3A08F;--ok:#9CC5A1}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;font-size:17px;line-height:1.65}
-main{max-width:760px;margin:0 auto;padding:16px 16px 80px}
-h1{font-size:23px;margin:8px 0 4px}
-h2{font-size:20px;margin:34px 0 10px;padding-top:14px;border-top:2px solid var(--line)}
-h3{font-size:18px;margin:18px 0 6px}
-.draft{display:inline-block;border:1px solid var(--warn);color:var(--warn);border-radius:6px;padding:0 8px;font-size:14px;margin-bottom:6px}
-.sub{color:var(--ink2);font-size:15px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
-.note{font-size:15px;color:var(--ink2)}
-.tag{display:inline-block;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin:2px 4px 2px 0;color:var(--ink2)}
-ol,ul{padding-left:22px;margin:6px 0}
-li{margin:4px 0}
-b.k{color:var(--accent)}
-/* 模擬問卷（手機框） */
-.phone{max-width:420px;margin:12px auto;border:1px solid var(--line);border-radius:18px;background:var(--paper2);padding:14px 12px}
-.phone h3{margin-top:4px}
-.who{font-size:16px;color:var(--ink2);margin:0 0 8px}
-.person{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:12px 0}
-.pname{font-size:19px;font-weight:700}
-.q{margin:10px 0 4px;font-weight:700}
-.opt{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:8px 10px;margin:6px 0;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:var(--paper)}
-.opt input{width:22px;height:22px;margin-top:3px;flex:0 0 auto;accent-color:var(--accent)}
-.opt.on{border-color:var(--accent);border-width:2px;padding:7px 9px}
-.opt small{display:block;color:var(--ink2);font-size:15px}
-.skip{border-left:4px solid var(--accent);padding:6px 10px;background:var(--paper);border-radius:6px;font-size:16px}
-.btn{display:inline-block;min-height:44px;font-size:17px;border-radius:10px;padding:0 18px;border:1px solid var(--accent);background:var(--card);color:var(--ink);cursor:pointer;margin:6px 6px 0 0}
-.btn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink);font-weight:700}
-.err{color:var(--warn);font-weight:700;margin:8px 0}
-.sum div{margin:6px 0}
-.chan{border-left:4px solid var(--accent)}
-.num{font-size:22px;font-weight:800;color:var(--accent)}
-.dec li{margin:8px 0}
-footer{margin-top:36px;font-size:14px;color:var(--ink2)}
-.warnbox{background:#FBF3E4;border:1px solid #CDB58A;border-left:6px solid #8A5A12;border-radius:10px;padding:10px 14px;margin:8px 0 10px;color:#2B2620}
-.warnbox b{display:block;font-size:18px;color:#5C3A0E;margin-bottom:4px}.warnbox p{margin:4px 0;font-size:16px}
-.lockbox{background:#FBF3E4;border:1px solid #CDB58A;border-left:6px solid #8A5A12;border-radius:10px;padding:10px 14px;margin:10px 0;font-weight:700;color:#2B2620}
-.lockbox a{color:#5C3A0E}
-.btn.back{background:transparent;border-color:var(--ink2);font-weight:600}
-.row2{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.row2 .btn{flex:1 1 150px;margin:0;min-height:48px}
-.pl div{margin:6px 0}.dt{display:block;font-weight:700;color:var(--accent)}.lk{color:var(--accent);font-weight:700}
-.lineblk{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}.linetxt{font-weight:700;margin-bottom:8px}
-.linerow{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
-.linebtn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border:1px solid var(--ink);border-radius:10px;background:var(--card);color:var(--ink);font-weight:700;font-size:17px;text-decoration:none}
-.lineic{display:inline-block;background:#06C755;color:#FFFFFF;border-radius:4px;font-size:11px;line-height:16px;padding:0 4px;font-weight:700}
-.lineqr{display:block;width:132px;height:132px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#FFFFFF}.lineqr svg{display:block;width:100%;height:100%}
-.linehow{font-size:15px;color:var(--ink2);margin-top:8px}
-@media (min-width:700px){.linerow{flex-direction:row;align-items:center;gap:16px}}
-.warnbox a,.lockbox a{color:#5C3A0E;text-decoration:underline}
-.mocknote{font-size:15px;color:var(--ink2);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin:8px 0}
-
-</style>
-</head>
-<body>
-<main>
-<span class="draft">工作人員試填版・不會送出、不會存檔</span>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>行程意願試填</title>
+<style>body{margin:0;background:#F7F3E9;color:#2B2620;font:17px/1.7 -apple-system,"PingFang TC","Noto Sans TC",sans-serif}main{max-width:620px;margin:0 auto;padding:16px}h1{font-size:23px;margin:8px 0}
+.draft{display:inline-block;border:1px solid #7A2E1C;color:#7A2E1C;border-radius:6px;padding:0 8px;font-size:14px}
+a.go{display:block;min-height:52px;padding:10px 14px;margin:10px 0;border:1px solid #6B4F2A;border-radius:12px;background:#FFFDF8;color:#2B2620;text-decoration:none}a.go b{display:block;font-size:18px}a.go span{font-size:15px;color:#4A4036}
+.note{font-size:15px;color:#4A4036}</style></head><body><main>
+<span class="draft">工作人員試填・正式版程式畫的畫面・假資料・不會送出、不會存檔</span>
 <h1>動土大典 12/26、12/27 行程意願（試填）</h1>
-<div class="sub">這是給工作人員先試的樣子，名字都是假的。正式版會寄給每一筆報名一個專屬連結，打開就是自己那一筆。<b>正式調查 11/15（日）截止。</b><br><a href="templates.html">看三份信件範本（邀請信、提醒信、LINE 群通知文）→</a></div>
-<div class="phone" id="mock">
- <h3>動土大典　12/26、12/27 行程</h3>
- <div class="note">請在 11/15（日）晚上 11:59 前選好。12/27 上午 8:30 在飯店集合，12:30 到台東火車站。</div>
- <div class="warnbox" role="note"><b>⚠ 請注意：行程送出後就不能再更改</b><p>禪院已經開始安排車輛、用餐與住宿。為了讓作業來得及，行程一經送出就是最後決定，送出前請再確認一次。</p><p>送出後，隨時可以在「<a href="https://script.google.com/macros/s/AKfycbyxgmpID1zRAxC5YiJyc_zaFWIww5lDov0ph07CT6HqBvTNAPiY1gLklPnX3BSjE8ag/exec" target="_blank" rel="noopener">個人查詢頁</a>」看到自己選的行程（日期與集合時間），請記住它，當天依這個行程行動。</p></div>
- <div id="view"></div>
- <div class="lineblk"><div class="linetxt">有問題或需要更改行程，請在 LINE 的「參加12/26動土大典群組」提出。</div><div class="linerow"><a class="linebtn" href="https://line.me/ti/g/DfnVGhDqCL" target="_blank" rel="noopener"><span class="lineic" aria-hidden="true">LINE</span>加入 LINE 群組</a><a class="lineqr" href="https://line.me/ti/g/DfnVGhDqCL" target="_blank" rel="noopener" aria-label="加入 LINE 群組（QR 碼，點一下或長按開啟）"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33"><path fill="#fff" d="M0 0h33v33h-33z"/><path stroke="#2b2620" d="M2 2.5h7m2 0h1m3 0h4m1 0h2m2 0h7m-29 1h1m5 0h1m1 0h1m2 0h3m3 0h1m1 0h2m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m2 0h3m4 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h7m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m6 0h5m2 0h1m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m1 0h2m1 0h2m1 0h1m1 0h3m-20 1h1m1 0h4m1 0h4m1 0h1m3 0h1m3 0h2m1 0h2m1 0h1m-28 1h3m1 0h2m1 0h1m4 0h1m1 0h1m4 0h1m3 0h2m2 0h1m-27 1h1m1 0h8m5 0h2m3 0h6m-27 1h1m2 0h1m1 0h1m1 0h1m1 0h5m3 0h1m1 0h2m3 0h1m3 0h1m-29 1h1m3 0h1m1 0h1m2 0h2m3 0h1m3 0h5m2 0h1m1 0h1m-28 1h1m2 0h2m3 0h2m1 0h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m-29 1h4m2 0h1m3 0h3m3 0h1m1 0h2m2 0h2m1 0h1m2 0h1m-27 1h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m10 0h3m1 0h1m-29 1h2m4 0h1m2 0h5m1 0h1m1 0h1m1 0h2m2 0h3m-26 1h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m3 0h3m-27 1h3m1 0h4m3 0h2m1 0h3m2 0h2m7 0h1m-29 1h3m2 0h1m1 0h1m3 0h2m5 0h1m2 0h3m2 0h3m-29 1h2m1 0h1m1 0h2m1 0h1m2 0h3m1 0h3m1 0h8m-19 1h1m3 0h2m1 0h2m1 0h1m1 0h1m3 0h4m-28 1h7m8 0h2m1 0h3m1 0h1m1 0h1m1 0h1m-27 1h1m5 0h1m1 0h1m2 0h1m2 0h1m2 0h1m1 0h2m3 0h2m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h5m2 0h3m1 0h6m-25 1h1m1 0h3m1 0h1m1 0h1m1 0h2m5 0h2m4 0h1m2 0h2m-28 1h1m1 0h3m1 0h1m8 0h2m3 0h2m1 0h2m1 0h3m-29 1h1m5 0h1m1 0h3m2 0h2m4 0h3m2 0h1m1 0h1m1 0h1m-29 1h7m2 0h2m1 0h1m1 0h1m4 0h6"/></svg></a></div><div class="linehow">手機請直接點按鈕（或點 QR 圖）加入；用電腦看的話，再用手機掃 QR。</div></div>
-</div>
-
-<div class="card note">
- <b>試填時請看這幾點</b>
- <ul>
-  <li>最上面的提醒看得到嗎？手機上一眼就看得到嗎？</li>
-  <li>題目看得懂嗎？長輩自己會不會填？</li>
-  <li>12/26 選「行程二（當天回家）」時，12/27 會自動不用選。</li>
-  <li>選「行程四（江賢二美術館）」時，會多問一題：不滿 15 人沒成行要改哪個。</li>
-  <li>「其他人都跟第一位一樣」按下去，全家一次填好，送出前還可以個別調整。</li>
-  <li>按「送出」會先到<b>確認頁</b>，列出每一位的日期與時間；按「← 回上頁修改」回去改，剛選的都還在；沒問題再按「確定送出」。</li>
-  <li><b>確定送出後就鎖定</b>：同一個連結再打開只看得到自己選的，不能再改；如需更改，請在 LINE 的「參加12/26動土大典群組」提出。工作人員在後台仍然可以代改（會記下是誰改的）。</li>
-  <li>已經在報名表上選好行程的人，打開連結時那一位就是唯讀（只看得到、不能改）。</li>
-  <li>每一頁都有「← 回上頁」（查詢頁 → 專屬連結頁、確認頁 → 選擇頁、唯讀頁）。</li>
-  <li>LINE 群組：手機上直接點「加入 LINE 群組」按鈕或點 QR 圖就能加入，不用掃碼；用電腦看的人再用手機掃 QR。</li>
-  <li>送出後，在「個人查詢頁」（分組查詢）輸入電話和姓名，就看得到自己和家人選的行程。</li>
-  <li>最下面有「備註／需求」欄，可以寫行動不便、飲食、想跟誰同行等需求（要在送出前寫好）。</li>
- </ul>
-</div>
-<footer>試填版，按「確定送出」不會傳到任何地方。行程內容依寺方 11-05 提供的〈26日及27日的旅遊行程〉；送出後不能更改依寺方 11-06 指示。</footer>
-</main>
-<script>
-(function(){
- var P=[{n:"王○明",r:"本人"},{n:"李○華",r:"配偶"},{n:"王○安",r:"兒子"}];
- var D26=[["1","行程一：留在會場參加法會到結束","約 18:30 結束，再搭車回飯店吃晚餐"],
-  ["2","行程二：下午 2 點離開，到台東火車站","當天回家，火車票與回程交通自己處理（12/27 就沒有行程）"],
-  ["3","行程三：下午 2 點出發去三仙台","之後回飯店，晚餐自己處理"],
-  ["4","行程四：下午 2 點出發去江賢二美術館","之後回飯店，晚餐自己處理。門票自費 250 元；滿 15 人才出發"]];
- var D27=[["1","行程一：史前博物館","9:00～12:00。門票自費 100 元"],
-  ["2","行程二：小野柳＋利吉惡地","小野柳 9:00～10:30，利吉惡地 11:00～12:00"]];
- var D27AT="8:30 在飯店集合，12:30 到台東火車站";
- var BK=[["1","改成行程一（留在會場到結束）"],["2","改成行程二（2 點離開，當天回家）"],["3","改成行程三（三仙台）"]];
- var LINE="https://line.me/ti/g/DfnVGhDqCL";
- var S=P.map(function(){return {a:"",b:"",c:""}}),NOTE="",STEP="sel";
- function $(i){return document.getElementById(i)}
- function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
- function find(list,v){for(var i=0;i<list.length;i++)if(list[i][0]===v)return list[i];return null}
- function opts(i,f,list,cur){return list.map(function(o){var on=cur===o[0];
-  return "<label class='opt"+(on?" on":"")+"'><input type='radio' name='p"+i+f+"' value='"+o[0]+"' data-i='"+i+"' data-f='"+f+"'"+(on?" checked":"")+"><span>"+esc(o[1])+(o[2]?"<small>"+esc(o[2])+"</small>":"")+"</span></label>"}).join("")}
- function plan(s){var a=find(D26,s.a),b=find(D27,s.b),c=find(BK,s.c);
-  return "<div class='pl'><div><span class='dt'>12/26（六）下午</span>"+esc(a?a[1]+"（"+a[2]+"）":"還沒選")+"</div>"+(s.a==="4"?"<div class='note'>美術館沒成行時："+esc(c?c[1]:"沒填")+"</div>":"")+
-  "<div><span class='dt'>12/27（日）上午</span>"+esc(s.a==="2"?"沒有行程（12/26 當天已回家）":(b?b[1]+"（"+D27AT+"；"+b[2]+"）":"還沒選"))+"</div></div>"}
- function back(t,a){return "<button class='btn back' type='button' data-act='"+a+"'>"+t+"</button>"}
- function drawSel(){var h=back("← 回上頁","toquery")+"<p class='who'>這一筆報名共 <b>3 位</b>。請替每一位選一個。選好後按「送出」，會先讓您再確認一次。</p>";
-  P.forEach(function(p,i){var s=S[i];
-   h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>";
-   h+="<div class='q'>12/26（六）下午，想怎麼安排？</div>"+opts(i,"a",D26,s.a);
-   if(s.a==="4")h+="<div class='q'>如果江賢二美術館不滿 15 人、沒有成行，您要改成：</div>"+opts(i,"c",BK,s.c);
-   if(s.a==="2")h+="<div class='skip'>12/26 當天就回家，<b>12/27 沒有行程，不用選</b>。</div>";
-   else h+="<div class='q'>12/27（日）上午，想去哪裡？（"+D27AT+"）</div>"+opts(i,"b",D27,s.b);
-   h+="</div>"});
-  h+="<div class='person'><div class='q'>備註／需求（可不填）</div><textarea id='note' maxlength='300' rows='4' style='width:100%;font-size:17px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--paper);color:var(--ink)' placeholder='例如：行動不便、飲食需求、想跟誰同一個行程或同一台車'>"+esc(NOTE)+"</textarea><div class='note'>最多 300 字</div></div>";
-  h+="<button class='btn' type='button' data-act='same'>其他人都跟第一位一樣</button><div id='err' class='err' role='alert'></div><button class='btn pri' type='button' data-act='confirm'>送出</button>";
-  $("view").innerHTML=h}
- function drawConfirm(){var h="<h3>請再確認一次</h3><div class='lockbox'>確定送出後就不能再更改。請看清楚每一位的日期與時間，也請記住。</div>";
-  P.forEach(function(p,i){h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>"+plan(S[i])+"</div>"});
-  if(NOTE.trim())h+="<div class='person'><b>備註／需求</b><div style='white-space:pre-wrap'>"+esc(NOTE)+"</div></div>";
-  h+="<div class='row2'>"+back("← 回上頁修改","tosel")+"<button class='btn pri' type='button' data-act='send'>確定送出</button></div>";
-  $("view").innerHTML=h}
- function drawLocked(first){var h=back("← 回上頁","toquery");
-  if(first)h+="<p><b>已收到，謝謝！</b>（試填版，沒有真的送出）以下是您確定送出的行程。</p>";
-  h+="<div class='lockbox'>您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：<a href='"+LINE+"' target='_blank' rel='noopener'>"+LINE+"</a></div>";
-  h+="<p><b>送出後，隨時可以在「<a href=\"https://script.google.com/macros/s/AKfycbyxgmpID1zRAxC5YiJyc_zaFWIww5lDov0ph07CT6HqBvTNAPiY1gLklPnX3BSjE8ag/exec\" target=\"_blank\" rel=\"noopener\">個人查詢頁</a>」看到自己選的行程（日期與集合時間），請記住它，當天依這個行程行動。</b>建議也把這一頁截圖存起來。</p>";
-  P.forEach(function(p,i){h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>"+plan(S[i])+"</div>"});
-  if(NOTE.trim())h+="<div class='person'><b>備註／需求</b><div style='white-space:pre-wrap'>"+esc(NOTE)+"</div></div>";
-  h+="<div class='mocknote'>正式版：同一個連結再打開，就是這一頁（唯讀）。試填版可以 <button class='btn' type='button' data-act='reopen'>模擬再打開連結</button> <button class='btn' type='button' data-act='reset'>重新試一次</button></div>";
-  $("view").innerHTML=h}
- function drawQuery(){$("view").innerHTML="<div class='mocknote'>這裡是<b>查詢頁</b>（正式版：輸入報名時填的電話和姓名，就會出現自己的專屬連結）。</div><p>請輸入報名時填的<b>電話</b>和<b>姓名</b>：</p><input style='width:100%;min-height:48px;font-size:17px;border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0;background:var(--paper);color:var(--ink)' placeholder='電話（試填版不用填）'><input style='width:100%;min-height:48px;font-size:17px;border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0;background:var(--paper);color:var(--ink)' placeholder='姓名（試填版不用填）'><button class='btn pri' type='button' data-act='open'>查詢</button>"}
- function draw(){if(STEP==="sel")drawSel();else if(STEP==="confirm")drawConfirm();else if(STEP==="locked")drawLocked(false);else if(STEP==="done")drawLocked(true);else drawQuery()}
- $("mock").addEventListener("input",function(e){if(e.target&&e.target.id==="note")NOTE=e.target.value});
- $("mock").addEventListener("change",function(e){var t=e.target;if(!t||t.type!=="radio")return;
-  var i=+t.getAttribute("data-i"),f=t.getAttribute("data-f");S[i][f]=t.value;
-  if(f==="a"){if(t.value==="2")S[i].b="";if(t.value!=="4")S[i].c=""}
-  draw()});
- $("mock").addEventListener("click",function(e){var b=e.target.closest?e.target.closest("[data-act]"):null;if(!b)return;var act=b.getAttribute("data-act");
-  if(act==="same"){for(var i=1;i<S.length;i++)S[i]={a:S[0].a,b:S[0].b,c:S[0].c};draw();return}
-  if(act==="confirm"){var miss=[];P.forEach(function(p,i){var s=S[i];
-    if(!s.a)miss.push(p.n+" 的 12/26");else if(s.a!=="2"&&!s.b)miss.push(p.n+" 的 12/27")});
-   if(miss.length){$("err").textContent="還沒選："+miss.join("、");return}
-   STEP="confirm";draw();window.scrollTo(0,$("mock").offsetTop);return}
-  if(act==="tosel"){STEP="sel";draw();return}
-  if(act==="send"){STEP="done";draw();return}
-  if(act==="reopen"){STEP="locked";draw();return}
-  if(act==="toquery"){STEP=(STEP==="done"||STEP==="locked")?"query_locked":"query";draw();return}
-  if(act==="open"){STEP=(STEP==="query_locked")?"locked":"sel";draw();return}
-  if(act==="reset"){S=P.map(function(){return {a:"",b:"",c:""}});NOTE="";STEP="sel";draw();return}});
- draw();
-})();
-</script>
-</body>
-</html>
+<p class="note">下面每一個都是<b>正式版程式</b>畫出來的頁面（資料是假的：王小明一家、陳大同、吳志工、鄭神鼓…）。可以在手機上實際點：查詢 → 選 → 確認頁 → 回上頁修改 → 確定送出。</p>
+<a class="go" href="demo/entry.html?busy=2"><b>① 從查詢頁開始（建議先點這個）</b><span>電話隨便打（打 0900-999-999 會看到「查不到」），姓名打「王小明」。按「確定送出」時會模擬「人很多」自動重試兩次。</span></a>
+<a class="go" href="demo/linkR1.html"><b>② 直接打開專屬連結（信裡的按鈕）</b><span>王小明一家三位，還沒送出。</span></a>
+<a class="go" href="demo/linkR1.html?mode=after"><b>③ 已經送出後，同一個連結再打開</b><span>只看得到自己選的，不能再改。</span></a>
+<a class="go" href="demo/linkR13.html"><b>④ 志工的報名</b><span>本人固定到大蒙山結束（不用選），家人照常選。</span></a>
+<a class="go" href="demo/linkR14.html"><b>⑤ 神鼓班</b><span>就算是志工也可以選。</span></a>
+<a class="go" href="demo/linkR1.html?mode=notyet"><b>⑥ 11/8 下午 2 點以前打開</b><span>顯示「11/8 下午 2 點開放」。</span></a>
+<a class="go" href="demo/linkR13.html?mode=ended"><b>⑦ 11/15 截止以後（沒選的人）</b><span>只能看，請到 LINE 群組提出。</span></a>
+<a class="go" href="demo/lookup.html?mode=after"><b>⑧ 個人查詢頁（分組查詢）的行程區</b><span>電話隨便打、按查詢，再打姓名「王小明」，就看得到一家三位選的行程。</span></a>
+<a class="go" href="templates.html"><b>⑨ 信件範本（邀請信、提醒信、LINE 群通知文）</b><span>正式程式產生的信件內容。</span></a>
+<p class="note">最上面的醒目提醒、確認頁、回上頁、送出後鎖定、LINE 群組按鈕（手機直接點，不用掃 QR），都跟正式版一樣。這一版還在等寺方確認，正式站還沒換。</p>
+</main></body></html>
