@@ -43,6 +43,15 @@ b.k{color:var(--accent)}
 .num{font-size:22px;font-weight:800;color:var(--accent)}
 .dec li{margin:8px 0}
 footer{margin-top:36px;font-size:14px;color:var(--ink2)}
+.warnbox{background:#FBF3E4;border:1px solid #CDB58A;border-left:6px solid #8A5A12;border-radius:10px;padding:10px 14px;margin:8px 0 10px;color:#2B2620}
+.warnbox b{display:block;font-size:18px;color:#5C3A0E;margin-bottom:4px}.warnbox p{margin:4px 0;font-size:16px}
+.lockbox{background:#FBF3E4;border:1px solid #CDB58A;border-left:6px solid #8A5A12;border-radius:10px;padding:10px 14px;margin:10px 0;font-weight:700;color:#2B2620}
+.lockbox a{color:#5C3A0E}
+.btn.back{background:transparent;border-color:var(--ink2);font-weight:600}
+.row2{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.row2 .btn{flex:1 1 150px;margin:0;min-height:48px}
+.pl div{margin:4px 0}.dt{display:inline-block;font-weight:700;margin-right:8px}.lk{color:var(--accent);font-weight:700}
+.mocknote{font-size:15px;color:var(--ink2);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin:8px 0}
+
 </style>
 </head>
 <body>
@@ -51,29 +60,28 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
 <h1>動土大典 12/26、12/27 行程意願（試填）</h1>
 <div class="sub">這是給工作人員先試的樣子，名字都是假的。正式版會寄給每一筆報名一個專屬連結，打開就是自己那一筆。<b>正式調查 11/15（日）截止。</b><br><a href="templates.html">看三份信件範本（邀請信、提醒信、LINE 群通知文）→</a></div>
 <div class="phone" id="mock">
- <h3>12/26、12/27 您想參加哪個行程？</h3>
- <p class="who">這一筆報名共 <b>3 位</b>。請替每一位選一個。<br>不知道怎麼選，可以先選，之後再改（以最後一次為準）。</p>
- <div id="form"><div id="people"></div>
- <div class="person"><div class="q">備註／需求（可不填）</div><textarea id="note" maxlength="300" rows="4" style="width:100%;font-size:17px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--paper);color:var(--ink)" placeholder="例如：行動不便、飲食需求、想跟誰同一個行程或同一台車"></textarea><div class="note">最多 300 字</div></div>
- <button class="btn" type="button" data-act="same">其他人都跟第一位一樣</button>
- <div id="err" class="err" role="alert"></div>
- <button class="btn pri" type="button" data-act="send">送出</button></div>
- <div id="sum" class="card sum" style="display:none" aria-live="polite"></div>
+ <h3>動土大典　12/26、12/27 行程</h3>
+ <div class="note">請在 11/15（日）晚上 11:59 前選好。12/27 上午 8:30 在飯店集合，12:30 到台東火車站。</div>
+ <div class="warnbox" role="note"><b>⚠ 請注意：行程送出後就不能再更改</b><p>禪院已經開始安排車輛、用餐與住宿。為了讓作業來得及，行程一經送出就是最後決定，送出前請再確認一次。</p><p>也請記住自己選的行程（日期與集合時間），當天請依這個行程行動。</p></div>
+ <div id="view"></div>
 </div>
-
 
 <div class="card note">
  <b>試填時請看這幾點</b>
  <ul>
+  <li>最上面的提醒看得到嗎？手機上一眼就看得到嗎？</li>
   <li>題目看得懂嗎？長輩自己會不會填？</li>
   <li>12/26 選「行程二（當天回家）」時，12/27 會自動不用選。</li>
   <li>選「行程四（江賢二美術館）」時，會多問一題：不滿 15 人沒成行要改哪個。</li>
-  <li>「其他人都跟第一位一樣」按下去，全家一次填好，還可以個別改。</li>
-  <li>送出後可以按「修改」，以最後一次為準。</li>
-  <li>最下面有「備註／需求」欄，可以寫行動不便、飲食、想跟誰同行等需求。</li>
+  <li>「其他人都跟第一位一樣」按下去，全家一次填好，送出前還可以個別調整。</li>
+  <li>按「送出」會先到<b>確認頁</b>，列出每一位的日期與時間；按「← 回上頁修改」回去改，剛選的都還在；沒問題再按「確定送出」。</li>
+  <li><b>確定送出後就鎖定</b>：同一個連結再打開只看得到自己選的，不能再改；如需更改，請在 LINE 的「參加12/26動土大典群組」提出。工作人員在後台仍然可以代改（會記下是誰改的）。</li>
+  <li>已經在報名表上選好行程的人，打開連結時那一位就是唯讀（只看得到、不能改）。</li>
+  <li>每一頁都有「← 回上頁」（查詢頁 → 專屬連結頁、確認頁 → 選擇頁、唯讀頁）。</li>
+  <li>最下面有「備註／需求」欄，可以寫行動不便、飲食、想跟誰同行等需求（要在送出前寫好）。</li>
  </ul>
 </div>
-<footer>試填版，按「送出」不會傳到任何地方。行程內容依寺方 11-05 提供的〈26日及27日的旅遊行程〉。</footer>
+<footer>試填版，按「確定送出」不會傳到任何地方。行程內容依寺方 11-05 提供的〈26日及27日的旅遊行程〉；送出後不能更改依寺方 11-06 指示。</footer>
 </main>
 <script>
 (function(){
@@ -84,37 +92,62 @@ footer{margin-top:36px;font-size:14px;color:var(--ink2)}
   ["4","行程四：下午 2 點出發去江賢二美術館","之後回飯店，晚餐自己處理。門票自費 250 元；滿 15 人才出發"]];
  var D27=[["1","行程一：史前博物館","9:00～12:00。門票自費 100 元"],
   ["2","行程二：小野柳＋利吉惡地","小野柳 9:00～10:30，利吉惡地 11:00～12:00"]];
+ var D27AT="8:30 在飯店集合，12:30 到台東火車站";
  var BK=[["1","改成行程一（留在會場到結束）"],["2","改成行程二（2 點離開，當天回家）"],["3","改成行程三（三仙台）"]];
- var S=P.map(function(){return {a:"",b:"",c:""}});
+ var LINE="https://line.me/ti/g/DfnVGhDqCL";
+ var S=P.map(function(){return {a:"",b:"",c:""}}),NOTE="",STEP="sel";
+ function $(i){return document.getElementById(i)}
  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+ function find(list,v){for(var i=0;i<list.length;i++)if(list[i][0]===v)return list[i];return null}
  function opts(i,f,list,cur){return list.map(function(o){var on=cur===o[0];
   return "<label class='opt"+(on?" on":"")+"'><input type='radio' name='p"+i+f+"' value='"+o[0]+"' data-i='"+i+"' data-f='"+f+"'"+(on?" checked":"")+"><span>"+esc(o[1])+(o[2]?"<small>"+esc(o[2])+"</small>":"")+"</span></label>"}).join("")}
- function draw(){var h="";P.forEach(function(p,i){var s=S[i];
-  h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>";
-  h+="<div class='q'>12/26（六）下午，想怎麼安排？</div>"+opts(i,"a",D26,s.a);
-  if(s.a==="4")h+="<div class='q'>如果江賢二美術館不滿 15 人、沒有成行，您要改成：</div>"+opts(i,"c",BK,s.c);
-  if(s.a==="2")h+="<div class='skip'>12/26 當天就回家，<b>12/27 沒有行程，不用選</b>。</div>";
-  else h+="<div class='q'>12/27（日）上午，8:30 在飯店集合，12:30 到台東火車站。想去哪裡？</div>"+opts(i,"b",D27,s.b);
-  h+="</div>"});
-  document.getElementById("people").innerHTML=h}
- document.getElementById("mock").addEventListener("change",function(e){var t=e.target;if(!t||t.type!=="radio")return;
+ function plan(s){var a=find(D26,s.a),b=find(D27,s.b),c=find(BK,s.c);
+  return "<div class='pl'><div><span class='dt'>12/26（六）下午</span>"+esc(a?a[1]+"（"+a[2]+"）":"還沒選")+"</div>"+(s.a==="4"?"<div class='note'>美術館沒成行時："+esc(c?c[1]:"沒填")+"</div>":"")+
+  "<div><span class='dt'>12/27（日）上午</span>"+esc(s.a==="2"?"沒有行程（12/26 當天已回家）":(b?b[1]+"（"+D27AT+"；"+b[2]+"）":"還沒選"))+"</div></div>"}
+ function back(t,a){return "<button class='btn back' type='button' data-act='"+a+"'>"+t+"</button>"}
+ function drawSel(){var h=back("← 回上頁","toquery")+"<p class='who'>這一筆報名共 <b>3 位</b>。請替每一位選一個。選好後按「送出」，會先讓您再確認一次。</p>";
+  P.forEach(function(p,i){var s=S[i];
+   h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>";
+   h+="<div class='q'>12/26（六）下午，想怎麼安排？</div>"+opts(i,"a",D26,s.a);
+   if(s.a==="4")h+="<div class='q'>如果江賢二美術館不滿 15 人、沒有成行，您要改成：</div>"+opts(i,"c",BK,s.c);
+   if(s.a==="2")h+="<div class='skip'>12/26 當天就回家，<b>12/27 沒有行程，不用選</b>。</div>";
+   else h+="<div class='q'>12/27（日）上午，想去哪裡？（"+D27AT+"）</div>"+opts(i,"b",D27,s.b);
+   h+="</div>"});
+  h+="<div class='person'><div class='q'>備註／需求（可不填）</div><textarea id='note' maxlength='300' rows='4' style='width:100%;font-size:17px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--paper);color:var(--ink)' placeholder='例如：行動不便、飲食需求、想跟誰同一個行程或同一台車'>"+esc(NOTE)+"</textarea><div class='note'>最多 300 字</div></div>";
+  h+="<button class='btn' type='button' data-act='same'>其他人都跟第一位一樣</button><div id='err' class='err' role='alert'></div><button class='btn pri' type='button' data-act='confirm'>送出</button>";
+  $("view").innerHTML=h}
+ function drawConfirm(){var h="<h3>請再確認一次</h3><div class='lockbox'>確定送出後就不能再更改。請看清楚每一位的日期與時間，也請記住。</div>";
+  P.forEach(function(p,i){h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>"+plan(S[i])+"</div>"});
+  if(NOTE.trim())h+="<div class='person'><b>備註／需求</b><div style='white-space:pre-wrap'>"+esc(NOTE)+"</div></div>";
+  h+="<div class='row2'>"+back("← 回上頁修改","tosel")+"<button class='btn pri' type='button' data-act='send'>確定送出</button></div>";
+  $("view").innerHTML=h}
+ function drawLocked(first){var h=back("← 回上頁","toquery");
+  if(first)h+="<p><b>已收到，謝謝！</b>（試填版，沒有真的送出）以下是您確定送出的行程。</p>";
+  h+="<div class='lockbox'>您的行程已經送出，不能再更改。如需更改，請在 LINE 的「參加12/26動土大典群組」提出。加入群組：<a href='"+LINE+"' target='_blank' rel='noopener'>"+LINE+"</a></div>";
+  h+="<p><b>請記住自己選的行程（日期與集合時間），當天請依這個行程行動。</b>建議把這一頁截圖存起來。</p>";
+  P.forEach(function(p,i){h+="<div class='person'><div class='pname'>"+esc(p.n)+"　<span class='tag'>"+esc(p.r)+"</span></div>"+plan(S[i])+"</div>"});
+  if(NOTE.trim())h+="<div class='person'><b>備註／需求</b><div style='white-space:pre-wrap'>"+esc(NOTE)+"</div></div>";
+  h+="<div class='mocknote'>正式版：同一個連結再打開，就是這一頁（唯讀）。試填版可以 <button class='btn' type='button' data-act='reopen'>模擬再打開連結</button> <button class='btn' type='button' data-act='reset'>重新試一次</button></div>";
+  $("view").innerHTML=h}
+ function drawQuery(){$("view").innerHTML="<div class='mocknote'>這裡是<b>查詢頁</b>（正式版：輸入報名時填的電話和姓名，就會出現自己的專屬連結）。</div><p>請輸入報名時填的<b>電話</b>和<b>姓名</b>：</p><input style='width:100%;min-height:48px;font-size:17px;border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0;background:var(--paper);color:var(--ink)' placeholder='電話（試填版不用填）'><input style='width:100%;min-height:48px;font-size:17px;border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:4px 0;background:var(--paper);color:var(--ink)' placeholder='姓名（試填版不用填）'><button class='btn pri' type='button' data-act='open'>查詢</button>"}
+ function draw(){if(STEP==="sel")drawSel();else if(STEP==="confirm")drawConfirm();else if(STEP==="locked")drawLocked(false);else if(STEP==="done")drawLocked(true);else drawQuery()}
+ $("mock").addEventListener("input",function(e){if(e.target&&e.target.id==="note")NOTE=e.target.value});
+ $("mock").addEventListener("change",function(e){var t=e.target;if(!t||t.type!=="radio")return;
   var i=+t.getAttribute("data-i"),f=t.getAttribute("data-f");S[i][f]=t.value;
   if(f==="a"){if(t.value==="2")S[i].b="";if(t.value!=="4")S[i].c=""}
-  document.getElementById("err").textContent="";draw()});
- function lab(list,v){for(var i=0;i<list.length;i++)if(list[i][0]===v)return list[i][1];return ""}
- document.getElementById("mock").addEventListener("click",function(e){var b=e.target.closest?e.target.closest("[data-act]"):null;if(!b)return;
-  var act=b.getAttribute("data-act"),sum=document.getElementById("sum"),err=document.getElementById("err");
+  draw()});
+ $("mock").addEventListener("click",function(e){var b=e.target.closest?e.target.closest("[data-act]"):null;if(!b)return;var act=b.getAttribute("data-act");
   if(act==="same"){for(var i=1;i<S.length;i++)S[i]={a:S[0].a,b:S[0].b,c:S[0].c};draw();return}
-  if(act==="edit"){sum.style.display="none";document.getElementById("form").style.display="";return}
-  if(act==="send"){var miss=[];P.forEach(function(p,i){var s=S[i];
-    if(!s.a)miss.push(p.n+" 的 12/26");else if(s.a!=="2"&&!s.b)miss.push(p.n+" 的 12/27");if(s.a==="4"&&!s.c)miss.push(p.n+" 的備選");});
-   if(miss.length){err.textContent="還沒選："+miss.join("、");return}
-   var h="<b>已收到，謝謝！</b>（試填版，沒有真的送出）<div class='note'>以下是您選的。要改的話按「修改」，以最後一次送出為準。</div>";
-   P.forEach(function(p,i){var s=S[i];h+="<div><b>"+esc(p.n)+"</b>：12/26 "+esc(lab(D26,s.a))+(s.a==="4"?"（沒成行就"+esc(lab(BK,s.c))+"）":"")+
-    "；12/27 "+(s.a==="2"?"沒有行程（12/26 已回家）":esc(lab(D27,s.b)))+"</div>"});
-   var nt=document.getElementById("note").value.trim();if(nt)h+="<div><b>備註／需求</b>："+esc(nt)+"</div>";
-   h+="<button class='btn' type='button' data-act='edit'>修改</button>";
-   sum.innerHTML=h;sum.style.display="block";document.getElementById("form").style.display="none"}});
+  if(act==="confirm"){var miss=[];P.forEach(function(p,i){var s=S[i];
+    if(!s.a)miss.push(p.n+" 的 12/26");else if(s.a!=="2"&&!s.b)miss.push(p.n+" 的 12/27")});
+   if(miss.length){$("err").textContent="還沒選："+miss.join("、");return}
+   STEP="confirm";draw();window.scrollTo(0,$("mock").offsetTop);return}
+  if(act==="tosel"){STEP="sel";draw();return}
+  if(act==="send"){STEP="done";draw();return}
+  if(act==="reopen"){STEP="locked";draw();return}
+  if(act==="toquery"){STEP=(STEP==="done"||STEP==="locked")?"query_locked":"query";draw();return}
+  if(act==="open"){STEP=(STEP==="query_locked")?"locked":"sel";draw();return}
+  if(act==="reset"){S=P.map(function(){return {a:"",b:"",c:""}});NOTE="";STEP="sel";draw();return}});
  draw();
 })();
 </script>
